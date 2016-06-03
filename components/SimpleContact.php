@@ -3,6 +3,8 @@
 use Cms\Classes\ComponentBase;
 use Zainab\SimpleContact\Models\Settings;
 use October\Rain\Support\Facades\Flash;
+use Validator;
+use ValidationException;
 class SimpleContact extends ComponentBase
 {
 
@@ -104,7 +106,34 @@ class SimpleContact extends ComponentBase
      * AJAX form fubmit handler
      */
     public function onFormSubmit(){
-        Flash::success(e(trans('zainab.simplecontact::lang.simplecontact.message_reply_success')));
+
+        /**
+         * Form validation
+         */
+        $customValidationMessages = [
+            'name.required' => e(trans('zainab.simplecontact::validation.custom.name.required')),
+            'email.required' => e(trans('zainab.simplecontact::validation.custom.email.required')),
+            'email.email' => e(trans('zainab.simplecontact::validation.custom.email.email')),
+            'subject.required' => e(trans('zainab.simplecontact::validation.custom.subject.required')),
+            'message.required' => e(trans('zainab.simplecontact::validation.custom.message.required'))
+        ];
+        $formValidationRules = [
+            'name' => 'required',
+            'email' => 'required|email',
+            'subject' => 'required',
+            'message' => 'required'
+        ];
+
+        $validator = Validator::make(post(), $formValidationRules,$customValidationMessages);
+
+        if ($validator->fails()) {
+            $messages = $validator->messages();
+            Flash::error($messages->first());
+        }else{
+
+        }
+
+
 
 
         return ['#simple_contact_flash_message' => $this->renderPartial('@flashMessage.htm')];

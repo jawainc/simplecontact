@@ -53,7 +53,7 @@ class Plugin extends PluginBase
                         'counter'     => SimpleContact::countUnreadMessages(),
                         'counterLabel' => 'Un-Read Messages'
                     ]
-                    
+
                 ]
 
             ]
