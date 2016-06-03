@@ -1,0 +1,185 @@
+<!--ToolBar-->
+<div class="control-toolbar">
+    <div class="toolbar-item toolbar-primary">
+        <div data-control="toolbar">
+
+            <a href="<?= Backend::url('zainab/simplecontact/simplecontact') ?>" type="button" class="btn btn-default btn-sm oc-icon-arrow-left"><?= e(trans('zainab.simplecontact::lang.simplecontact.back')) ?></a>
+            <button type="button" class="btn btn-danger btn-sm oc-icon-trash"
+                    data-request="onDeleteSingle"
+                    data-request-confirm="<?= e(trans('backend::lang.form.confirm_delete')) ?>"
+                    data-request-data="id: <?= $message->id ?>"
+                    data-stripe-load-indicator
+            ><?= e(trans('backend::lang.account.delete')) ?></button>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Subject -->
+<div class="message-subject">
+    <?= $message->subject ?>
+</div>
+
+<!--Name,Email,Phone-->
+<div class="row">
+    <div class="col-sm-6 col-xs-12">
+        <div class="media">
+            <div class="media-left">
+                <a href="!#">
+                    <img class="media-object" src="<?= $avatar ?>" alt="<?= $message->name ?>">
+                </a>
+            </div>
+            <div class="media-body">
+                <span class="media-heading"><?= $message->name ?></span>
+                <p>
+                    <a href="mailto:<?= $message->email ?>"><?= $message->email ?></a>
+                </p>
+                <p>
+                    <i class="oc-icon-phone"> <?= $message->phone ?></i>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xs-12 text-right ">
+
+
+        <span class="message-date ">
+             <?= date('M d, Y \a\t g:i A',strtotime( $message->created_at )); ?>
+        </span>
+
+        <!--Reply Button-->
+        <button class="btn btn-xs  btn-default oc-icon-reply"
+                data-toggle="modal"
+                href="#message_reply"
+                data-size="giant"
+        ><?= e(trans('zainab.simplecontact::lang.simplecontact.reply')) ?></button>
+        <!--Print Button-->
+        <button  class="btn btn-xs  btn-default oc-icon-print"
+                 data-toggle="modal"
+                 href="#message_printing"
+                 data-size="giant"
+
+        ><?= e(trans('zainab.simplecontact::lang.simplecontact.print')) ?></button>
+
+
+    </div>
+</div>
+
+<div class="clearfix"></div>
+
+<!-- Message Body -->
+<div class="message-body">
+    <?= nl2br($message->message) ?>
+</div>
+
+
+
+<!-- Message Print -->
+<div class="control-popup modal fade" id="message_printing" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Print Message</h4>
+            </div>
+            <div class="modal-body">
+               <div class="print-body">
+                   <span class="name">
+                       <?= $message->name ?> < <?= $message->email ?> >
+                       <br />
+                       Phone: <?= $message->phone ?>
+                   </span>
+                   <span class="date"><?= date('M d, Y \a\t g:i A',strtotime( $message->created_at )); ?></span>
+                   <br class="clear" />
+                   <br />
+                   <hr />
+                   <strong>Subject: <?= $message->subject ?></strong>
+                   <hr />
+                   <?= nl2br($message->message) ?>
+               </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button onclick="printMessage();" type="button" class="btn btn-primary" data-dismiss="modal">Print</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Message Reply -->
+<div class="control-popup modal fade" id="message_reply" tabindex="-2" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Reply Message</h4>
+            </div>
+            <div class="modal-body">
+
+                <?= Form::ajax('onReplyMessage', [
+                                    'id' => 'replyMessageForm',
+                                    'class' => 'form-elements',
+                                    'role' => 'form',
+                                    'success' => "
+                                                $.oc.flashMsg({
+                                                'text': '<?= e(trans('zainab.simplecontact::lang.simplecontact.message_reply_success')) ?>',
+                                                'class': 'success',
+                                                'interval': 3
+                                                });"
+
+
+
+                ]) ?>
+
+                <input type="hidden" name="id" value="<?= $message->id ?>">
+                <input type="hidden" name="name_to" value="<?= $message->name ?>">
+                <input type="hidden" name="email_to" value="<?= $message->email ?>">
+
+                <div class="form-group text-field span-full is-required ">
+                    <label>Subject</label>
+                    <input type="text" name="subject" value="Re: <?= $message->subject ?>" class="form-control " required />
+                </div>
+
+                <div class="form-group textarea-field  span-full is-required " >
+                    <label>Message:</label>
+                    <textarea type="text" name="message" id="message" class="form-control field-textarea size-huge"></textarea>
+
+                </div>
+
+
+
+                    <div class="form-buttons">
+
+                        <button
+                                type="button"
+                                data-request="onReplyMessage"
+                                data-request-success="
+                                        $.oc.flashMsg({
+                                        'text': '<?= e(trans('zainab.simplecontact::lang.simplecontact.message_reply_success')) ?>',
+                                        'class': 'success',
+                                        'interval': 3
+                                    });
+                                 "
+                                data-stripe-load-indicator
+                                class="btn btn-primary oc-icon-reply">
+                            Submit
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                    </div>
+
+
+
+
+
+
+                <?= Form::close() ?>
+
+            </div>
+
+        </div>
+    </div>
+</div>

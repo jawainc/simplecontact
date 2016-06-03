@@ -1,0 +1,12 @@
+title: SimpleContact
+modelClass: Zainab\SimpleContact\Models\SimpleContact
+list: $/zainab/simplecontact/models/simplecontact/columns.yaml
+recordUrl: zainab/simplecontact/simplecontact/view/:id
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+defaultSort: 'created_at: desc'
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'

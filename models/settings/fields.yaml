@@ -1,0 +1,62 @@
+fields:
+
+    form_settings.section:
+            label: zainab.simplecontact::lang.settings.section_contact_label
+            type: section
+
+    redirect_to_page:
+            span: left
+            label: zainab.simplecontact::lang.settings.redirect_label
+            commentAbove: zainab.simplecontact::lang.settings.redirect_comment
+            type: switch
+    redirect_to_url:
+                    span: right
+                    label: zainab.simplecontact::lang.settings.redirect_url_label
+                    commentAbove: zainab.simplecontact::lang.settings.redirect_url_comment
+                    type: dropdown
+    text_top_form:
+                label: zainab.simplecontact::lang.settings.form_top_text_label
+                commentAbove: zainab.simplecontact::lang.settings.form_top_text_comment
+                type: richeditor
+                size: giant
+
+    form_mail_settings.section:
+                label: zainab.simplecontact::lang.settings.section_mail_label
+                type: section
+
+    recieve_notification:
+        span: left
+        label: zainab.simplecontact::lang.settings.notification_label
+        commentAbove: zainab.simplecontact::lang.settings.notification_comment
+        type: switch
+
+    auto_reply:
+            span: right
+            label: zainab.simplecontact::lang.settings.auto_reply_label
+            commentAbove: zainab.simplecontact::lang.settings.auto_reply_comment
+            type: switch
+
+
+
+    recaptcha_settings.section:
+        label: zainab.simplecontact::lang.settings.section_recaptcha_label
+        type: section
+        comment: zainab.simplecontact::lang.settings.section_recaptcha_comments
+
+    recaptcha_enabled:
+        label: zainab.simplecontact::lang.settings.recaptcha_label
+        commentAbove: zainab.simplecontact::lang.settings.recaptcha_comment
+        type: switch
+
+    site_key:
+        label: zainab.simplecontact::lang.settings.site_key_label
+        commentAbove: zainab.simplecontact::lang.settings.site_key_comment
+        span: left
+        type: text
+    secret_key:
+        label: zainab.simplecontact::lang.settings.secret_key_label
+        commentAbove: zainab.simplecontact::lang.settings.secret_key_comment
+        span: right
+        type: text
+
+

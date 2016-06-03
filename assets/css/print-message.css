@@ -1,0 +1,13 @@
+.print-body {
+   padding: 25px;
+}
+.print-body .name{
+    font-weight: bold;
+    float: left;
+}
+.print-body .date{
+    float: right;
+}
+.clear{
+    clear: both;
+}

@@ -1,0 +1,47 @@
+
+.message-subject{
+    font-weight: bold;
+    font-size: 20px;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+
+    margin-top:20px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.media-left{
+    float: left;
+}
+.media-object{
+    width: 25px;
+}
+.media-body{
+    float: left;
+    margin-left: 15px;
+}
+.media-heading{
+    font-size: 15px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+}
+.media-body p{
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: grey;
+    margin-bottom: 5px;
+}
+.media-body p a{
+    color: grey;
+}
+.media-body p a:hover{
+    color: grey;
+}
+.message-date{
+    margin-right: 15px;
+    font-size: 13px;
+}
+.message-body{
+    margin-top: 20px;
+}

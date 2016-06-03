@@ -1,0 +1,29 @@
+columns:
+    name:
+        label: 'zainab.simplecontact::lang.simplecontact.from'
+        type: partial
+        path: ~/plugins/zainab/simplecontact/models/simplecontact/_name_col.htm
+        searchable: true
+        sortable: false
+    subject:
+        label: 'zainab.simplecontact::lang.simplecontact.subject'
+        type: text
+        searchable: true
+        sortable: true
+    email:
+        label: 'zainab.simplecontact::lang.simplecontact.email'
+        type: text
+        searchable: true
+        sortable: true
+    phone:
+        label: 'zainab.simplecontact::lang.simplecontact.phone'
+        type: text
+        searchable: true
+        invisible: true
+        sortable: true
+    created_at:
+        label: 'zainab.simplecontact::lang.simplecontact.date'
+        type: date
+        searchable: true
+        sortable: true
+

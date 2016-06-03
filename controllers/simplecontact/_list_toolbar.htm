@@ -1,0 +1,33 @@
+<div data-control="toolbar">
+
+    <button type="button"
+            class="btn btn-danger oc-icon-trash"
+            data-request="onDelete"
+            disabled="disabled"
+            data-request-confirm="<?= e(trans('backend::lang.list.delete_selected_confirm')) ?>"
+            onclick="$(this).data('request-data', {
+                checked: $('.control-list').listWidget('getChecked')
+            })"
+            data-trigger-action="enable"
+            data-trigger=".control-list input[type=checkbox]"
+            data-trigger-condition="checked"
+            data-request-success="
+                                    $(this).prop('disabled', true);
+
+                                    $.oc.flashMsg({
+                                        'text': '<?= e(trans('backend::lang.list.delete_selected_success')) ?>',
+                                        'class': 'success',
+                                        'interval': 3
+                                    });
+
+                                    $.oc.sideNav.setCounter('main-menu-item/side-menu-item', data.counter);
+
+                                    $('#Lists').html(data.list['#Lists']);
+
+                                 "
+            data-stripe-load-indicator
+    >
+    <?= e(trans('backend::lang.list.delete_selected')) ?>
+    </button>
+
+</div>

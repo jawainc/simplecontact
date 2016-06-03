@@ -1,0 +1,14 @@
+plugin:
+    name: 'zainab.simplecontact::lang.plugin.name'
+    description: 'zainab.simplecontact::lang.plugin.description'
+    author: Zainab
+    icon: oc-icon-envelope
+    homepage: ''
+permissions:
+    inbox:
+        tab: 'zainab.simplecontact::lang.simplecontact.permission'
+        label: 'zainab.simplecontact::lang.simplecontact.permission_messages'
+    manage_settings:
+        tab: 'zainab.simplecontact::lang.simplecontact.permission'
+        label: 'zainab.simplecontact::lang.simplecontact.permission_settings'
+
