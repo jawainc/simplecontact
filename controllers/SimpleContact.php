@@ -68,9 +68,11 @@ class SimpleContact extends Controller
     public function onDelete()
     {
         /** Check if this is even set **/
+        
+
         if (($checkedIds = post('checked')) && is_array($checkedIds) && count($checkedIds)) {
 
-            SimpleContactModel::where('id',$checkedIds)->delete();
+            SimpleContactModel::whereIn('id',$checkedIds)->delete();
 
         }
 
