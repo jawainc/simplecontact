@@ -65,6 +65,7 @@ class Plugin extends PluginBase
         return [
             'zainab.simplecontact::mail.reply' => 'Simple Contact -- reply message',
             'zainab.simplecontact::mail.auto-response' => 'Simple Contact -- auto response message',
+            'zainab.simplecontact::mail.notification' => 'Simple Contact -- notification mail',
         ];
     }
 }
