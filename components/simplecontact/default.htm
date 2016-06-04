@@ -1,6 +1,6 @@
 {{simpleContact.settings.text_top_form|raw}}
 
-<form>
+<form id="simpleContactForm">
 
     <div id="simple_contact_flash_message"></div>
 
@@ -9,27 +9,42 @@
         <label for="name">{{simpleContact.properties.nameLabel}}</label>
         <input type="text" id="name" name="name" class="form-control" required >
     </div>
+
     <div class="form-group">
         <label for="email">{{simpleContact.properties.emailLabel}}</label>
         <input type="email" id="email" name="email" class="form-control" required >
     </div>
+
     {% if(simpleContact.properties.phoneEnabled) %}
         <div class="form-group">
             <label for="phone">{{simpleContact.properties.phoneLabel}}</label>
             <input type="text" id="phone" name="phone" class="form-control"  >
         </div>
     {% endif %}
+
     <div class="form-group">
         <label for="subject">{{simpleContact.properties.subjectLabel}}</label>
         <input type="text" id="subject" name="subject" class="form-control"  >
     </div>
+
     <div class="form-group">
         <label for="message">{{simpleContact.properties.messageLabel}}</label>
         <textarea id="message" name="message" class="form-control"></textarea>
     </div>
 
+    <!-- Injecting reCaptcha if enabled -->
+    {% if(simpleContact.settings.recaptcha_enabled) %}
+        <div class="form-group">
+            <label for="message"></label>
+            <div class="g-recaptcha" data-sitekey="{{simpleContact.settings.recaptcha_site_key}}"></div>
+        </div>
+    {% endif %}
+    <!-- End reCaptcha -->
 
-    <button
+    <button id="simpleContactSubmitButton"
             data-request="{{ __SELF__ }}::onFormSubmit"
-            type="submit" class="btn btn-default">{{simpleContact.properties.buttonText}}</button>
+            type="submit" class="btn btn-default">
+        {{simpleContact.properties.buttonText}}
+    </button>
+
 </form>

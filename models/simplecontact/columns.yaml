@@ -4,7 +4,7 @@ columns:
         type: partial
         path: ~/plugins/zainab/simplecontact/models/simplecontact/_name_col.htm
         searchable: true
-        sortable: false
+        sortable: true
     subject:
         label: 'zainab.simplecontact::lang.simplecontact.subject'
         type: text
