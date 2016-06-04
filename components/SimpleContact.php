@@ -1,7 +1,9 @@
 <?php namespace Zainab\SimpleContact\Components;
 
 use Cms\Classes\ComponentBase;
+use Doctrine\Tests\Common\Cache\RedisCacheTest;
 use Zainab\SimpleContact\Models\Settings;
+use Zainab\SimpleContact\Models\SimpleContact as simpleContactModel;
 use October\Rain\Support\Facades\Flash;
 use Validator;
 use ValidationException;
@@ -102,6 +104,16 @@ class SimpleContact extends ComponentBase
         
     }
 
+
+    /**
+     * Injecting Assets
+     */
+    public function onRun()
+    {
+        if(Settings::get('recaptcha_enabled', false))
+            $this->addJs('https://www.google.com/recaptcha/api.js');
+    }
+
     /**
      * AJAX form fubmit handler
      */
@@ -127,10 +139,28 @@ class SimpleContact extends ComponentBase
         $validator = Validator::make(post(), $formValidationRules,$customValidationMessages);
 
         if ($validator->fails()) {
+
             $messages = $validator->messages();
             Flash::error($messages->first());
-        }else{
 
+        }elseif (Settings::get('recaptcha_enabled', false)){
+
+            /**
+             * Validating reCaptcha
+             */
+            $response=json_decode(file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".Settings::get('secret_key')."&response=".post('g-recaptcha-response')."&remoteip=".$_SERVER['REMOTE_ADDR']), true);
+            if($response['success'] == false)
+            {
+                Flash::error(e(trans('zainab.simplecontact::validation.custom.reCAPTCHA.required')));
+            }
+            else
+            {
+                $this->submitForm(post());
+            }
+
+        }
+        else{
+            $this->submitForm(post());
         }
 
 
@@ -140,4 +170,65 @@ class SimpleContact extends ComponentBase
 
     }
 
+    protected function submitForm(){
+
+        $model = new simpleContactModel;
+
+        $model->name = post('name');
+        $model->email = post('email');
+        $model->phone = post('phone');
+        $model->subject = post('subject');
+        $model->message = post('message');
+
+        $model->save();
+
+        if(Settings::get('recieve_notification',false) && !empty(Settings::get('notification_email_address','')))
+            $this->sendNotificationMail();
+
+        if(Settings::get('auto_reply',false))
+            $this->sendAutoReply();
+        
+        if(Settings::get('redirect_to_page',false) && !empty(Settings::get('redirect_to_url','')))
+            return Redirect::to(Settings::get('redirect_to_url'));
+        else
+            Flash::success(Settings::get('success_message','Thankyou for contacting us'));
+            
+
+    }
+
+    /**
+     * Send notification email
+     */
+    protected function sendNotificationMail(){
+        $vars = [
+            'name' => post('name'),
+            'email' => post('email'),
+            'phone' => post('phone'),
+            'subject' => post('subject'),
+            'message_body' => post('message')
+        ];
+
+        Mail::sendTo(Settings::get('notification_email_address'), 'zainab.simplecontact::mail.notification', $vars);
+    }
+
+    /**
+     * send auto reply
+     */
+    protected function sendAutoReply(){
+
+        $vars = [
+            'name' => post('name'),
+            'email' => post('email'),
+            'phone' => post('phone'),
+            'subject' => post('subject'),
+            'message_body' => post('message')
+        ];
+
+        Mail::send('zainab.simplecontact::mail.auto-response', $vars, function($message) {
+
+            $message->to(post('email'), post('name'));
+
+        });
+
+    }
 }

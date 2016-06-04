@@ -33,5 +33,6 @@ class SimpleContact extends Model
      */
     protected $casts = [
         'is_new' => 'boolean',
+        'is_replied' => 'boolean',
     ];
 }

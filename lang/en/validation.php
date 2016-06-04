@@ -13,5 +13,8 @@
             'message' => [
                 'required' => 'Message field is required!',
             ],
+            'reCAPTCHA' => [
+                'required' => 'Human test fail, please check reCAPTCHA checkbox'
+            ]
         ]
     ];

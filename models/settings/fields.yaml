@@ -14,6 +14,11 @@ fields:
                     label: zainab.simplecontact::lang.settings.redirect_url_label
                     commentAbove: zainab.simplecontact::lang.settings.redirect_url_comment
                     type: dropdown
+    success_message:
+                  span: left
+                  label: zainab.simplecontact::lang.settings.success_message
+                  commentAbove: zainab.simplecontact::lang.settings.success_message_comment
+                  type: text
     text_top_form:
                 label: zainab.simplecontact::lang.settings.form_top_text_label
                 commentAbove: zainab.simplecontact::lang.settings.form_top_text_comment
@@ -25,16 +30,22 @@ fields:
                 type: section
 
     recieve_notification:
-        span: left
-        label: zainab.simplecontact::lang.settings.notification_label
-        commentAbove: zainab.simplecontact::lang.settings.notification_comment
-        type: switch
+          span: left
+          label: zainab.simplecontact::lang.settings.notification_label
+          commentAbove: zainab.simplecontact::lang.settings.notification_comment
+          type: switch
 
     auto_reply:
             span: right
             label: zainab.simplecontact::lang.settings.auto_reply_label
             commentAbove: zainab.simplecontact::lang.settings.auto_reply_comment
             type: switch
+
+    notification_email_address:
+             label: zainab.simplecontact::lang.settings.notification_email_address
+             commentAbove: zainab.simplecontact::lang.settings.notification_email_address_comment
+             span: left
+             type: text
 
 
 
