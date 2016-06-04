@@ -10,4 +10,4 @@ Contact Us plugin for October CMS
 * print the message
 
 ---
-its under development
+wiki how coming soon

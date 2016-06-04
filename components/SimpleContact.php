@@ -1,12 +1,13 @@
 <?php namespace Zainab\SimpleContact\Components;
 
 use Cms\Classes\ComponentBase;
-use Doctrine\Tests\Common\Cache\RedisCacheTest;
 use Zainab\SimpleContact\Models\Settings;
 use Zainab\SimpleContact\Models\SimpleContact as simpleContactModel;
 use October\Rain\Support\Facades\Flash;
 use Validator;
-use ValidationException;
+use AjaxException;
+use Mail;
+use Redirect;
 class SimpleContact extends ComponentBase
 {
 
@@ -110,6 +111,7 @@ class SimpleContact extends ComponentBase
      */
     public function onRun()
     {
+        $this->addJs('/plugins/zainab/simplecontact/assets/js/simpleContact-frontend.js');
         if(Settings::get('recaptcha_enabled', false))
             $this->addJs('https://www.google.com/recaptcha/api.js');
     }
@@ -143,30 +145,42 @@ class SimpleContact extends ComponentBase
             $messages = $validator->messages();
             Flash::error($messages->first());
 
-        }elseif (Settings::get('recaptcha_enabled', false)){
+            throw new AjaxException(['#simple_contact_flash_message' => $this->renderPartial('@flashMessage.htm')]);
 
-            /**
-             * Validating reCaptcha
-             */
+        }
+
+        /**
+         * Validating reCaptcha
+         */
+        if (Settings::get('recaptcha_enabled', false)){
+
             $response=json_decode(file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".Settings::get('secret_key')."&response=".post('g-recaptcha-response')."&remoteip=".$_SERVER['REMOTE_ADDR']), true);
             if($response['success'] == false)
             {
                 Flash::error(e(trans('zainab.simplecontact::validation.custom.reCAPTCHA.required')));
-            }
-            else
-            {
-                $this->submitForm(post());
+
+                throw new AjaxException(['#simple_contact_flash_message' => $this->renderPartial('@flashMessage.htm')]);
             }
 
         }
+
+
+        /**
+         * At this point all validations succeded
+         * further processing form
+         */
+
+         $this->submitForm();
+
+
+
+        if(Settings::get('redirect_to_page',false) && !empty(Settings::get('redirect_to_url','')))
+            return Redirect::to(Settings::get('redirect_to_url'));
         else{
-            $this->submitForm(post());
+            Flash::success(Settings::get('success_message','Thankyou for contacting us'));
+            return ['#simple_contact_flash_message' => $this->renderPartial('@flashMessage.htm')];
         }
 
-
-
-
-        return ['#simple_contact_flash_message' => $this->renderPartial('@flashMessage.htm')];
 
     }
 
@@ -188,10 +202,7 @@ class SimpleContact extends ComponentBase
         if(Settings::get('auto_reply',false))
             $this->sendAutoReply();
         
-        if(Settings::get('redirect_to_page',false) && !empty(Settings::get('redirect_to_url','')))
-            return Redirect::to(Settings::get('redirect_to_url'));
-        else
-            Flash::success(Settings::get('success_message','Thankyou for contacting us'));
+
             
 
     }

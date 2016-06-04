@@ -1,6 +1,6 @@
 {{simpleContact.settings.text_top_form|raw}}
 
-<form>
+<form id="simpleContactForm">
 
     <div id="simple_contact_flash_message"></div>
 
@@ -41,7 +41,7 @@
     {% endif %}
     <!-- End reCaptcha -->
 
-    <button
+    <button id="simpleContactSubmitButton"
             data-request="{{ __SELF__ }}::onFormSubmit"
             type="submit" class="btn btn-default">
         {{simpleContact.properties.buttonText}}
