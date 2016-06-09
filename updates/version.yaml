@@ -6,3 +6,5 @@
 1.0.3:
     - 'Updated table zainab_simplecontact_contact'
     - builder_table_update_zainab_simplecontact_contact.php
+1.0.4:
+    - 'Change Alias bug fixed'
