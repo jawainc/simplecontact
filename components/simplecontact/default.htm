@@ -1,4 +1,4 @@
-{{simpleContact.settings.text_top_form|raw}}
+{{ __SELF__.settings.text_top_form|raw}}
 
 <form id="simpleContactForm">
 
@@ -6,37 +6,37 @@
 
 
     <div class="form-group">
-        <label for="name">{{simpleContact.properties.nameLabel}}</label>
+        <label for="name">{{__SELF__.properties.nameLabel}}</label>
         <input type="text" id="name" name="name" class="form-control" required >
     </div>
 
     <div class="form-group">
-        <label for="email">{{simpleContact.properties.emailLabel}}</label>
+        <label for="email">{{__SELF__.properties.emailLabel}}</label>
         <input type="email" id="email" name="email" class="form-control" required >
     </div>
 
-    {% if(simpleContact.properties.phoneEnabled) %}
+    {% if(__SELF__.properties.phoneEnabled) %}
         <div class="form-group">
-            <label for="phone">{{simpleContact.properties.phoneLabel}}</label>
+            <label for="phone">{{__SELF__.properties.phoneLabel}}</label>
             <input type="text" id="phone" name="phone" class="form-control"  >
         </div>
     {% endif %}
 
     <div class="form-group">
-        <label for="subject">{{simpleContact.properties.subjectLabel}}</label>
+        <label for="subject">{{__SELF__.properties.subjectLabel}}</label>
         <input type="text" id="subject" name="subject" class="form-control"  >
     </div>
 
     <div class="form-group">
-        <label for="message">{{simpleContact.properties.messageLabel}}</label>
+        <label for="message">{{__SELF__.properties.messageLabel}}</label>
         <textarea id="message" name="message" class="form-control"></textarea>
     </div>
 
     <!-- Injecting reCaptcha if enabled -->
-    {% if(simpleContact.settings.recaptcha_enabled) %}
+    {% if(__SELF__.settings.recaptcha_enabled) %}
         <div class="form-group">
             <label for="message"></label>
-            <div class="g-recaptcha" data-sitekey="{{simpleContact.settings.recaptcha_site_key}}"></div>
+            <div class="g-recaptcha" data-sitekey="{{__SELF__.settings.recaptcha_site_key}}"></div>
         </div>
     {% endif %}
     <!-- End reCaptcha -->
@@ -44,7 +44,7 @@
     <button id="simpleContactSubmitButton"
             data-request="{{ __SELF__ }}::onFormSubmit"
             type="submit" class="btn btn-default">
-        {{simpleContact.properties.buttonText}}
+        {{__SELF__.properties.buttonText}}
     </button>
 
 </form>
