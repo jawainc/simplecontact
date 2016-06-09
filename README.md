@@ -9,5 +9,3 @@ Contact Us plugin for October CMS
 * Reply the message
 * print the message
 
----
-wiki how coming soon
