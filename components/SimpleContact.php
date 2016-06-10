@@ -198,7 +198,7 @@ class SimpleContact extends ComponentBase
         $model->save();
 
         if(Settings::get('recieve_notification',false) && !empty(Settings::get('notification_email_address','')))
-            $this->sendNotificationMail();
+            $this->sendNotificationMail($model->id);
 
         if(Settings::get('auto_reply',false))
             $this->sendAutoReply();
@@ -211,10 +211,10 @@ class SimpleContact extends ComponentBase
     /**
      * Send notification email
      */
-    protected function sendNotificationMail(){
-        $url_message  = Backend::url('zainab/simplecontact/simplecontact/view/'.simpleContactModel::where('message', post('message'))->pluck('id'));
+    protected function sendNotificationMail($message_id){
+        $url_message = Backend::url('zainab/simplecontact/simplecontact/view/'.$message_id);
         $vars = [
-            'url' => $url_message,
+            'url_message' => $url_message,
             'name' => post('name'),
             'email' => post('email'),
             'phone' => post('phone'),
