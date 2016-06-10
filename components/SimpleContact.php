@@ -1,5 +1,6 @@
 <?php namespace Zainab\SimpleContact\Components;
 
+use Backend\Facades\Backend;
 use Cms\Classes\ComponentBase;
 use Zainab\SimpleContact\Models\Settings;
 use Zainab\SimpleContact\Models\SimpleContact as simpleContactModel;
@@ -211,7 +212,9 @@ class SimpleContact extends ComponentBase
      * Send notification email
      */
     protected function sendNotificationMail(){
+        $url_message  = Backend::url('zainab/simplecontact/simplecontact/view/'.simpleContactModel::where('message', post('message'))->pluck('id'));
         $vars = [
+            'url' => $url_message,
             'name' => post('name'),
             'email' => post('email'),
             'phone' => post('phone'),
