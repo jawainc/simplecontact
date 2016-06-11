@@ -78,4 +78,14 @@
         'button_description' => 'Form submit button text(required)',
         'button_validation_message' => '',
     ],
+    'widget' => [
+        'label' => 'Contact Us Messages Overview',
+        'properties_title' => 'Widget title',
+        'properties_chart' => 'Chart Type',
+        'properties_chart_option_bar' => 'Bar',
+        'properties_chart_option_pie' => 'Pie',
+        'new' => 'New',
+        'replied' => 'Replied',
+        'total' => 'Total'
+    ]
 ];
