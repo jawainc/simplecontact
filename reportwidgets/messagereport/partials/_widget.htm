@@ -1,0 +1,12 @@
+<div class="report-widget">
+    <h3><?php echo $title; ?></h3>
+    <div class="scoreboard">
+        <div class="scoreboard-item control-chart" data-control="<?php echo $chart_type; ?>">
+            <ul>
+                <li data-color="#4CAF50"><?php echo e(trans('zainab.simplecontact::lang.widget.new')); ?> <span><?php echo $new_messages; ?></span></li>
+                <li data-color="#FF5722"><?php echo e(trans('zainab.simplecontact::lang.widget.replied')); ?> <span><?php echo $replied_messages; ?></span></li>
+                <li data-color="#607D8B"><?php echo e(trans('zainab.simplecontact::lang.widget.total')); ?> <span><?php echo $total_messages; ?></span></li>
+            </ul>
+        </div>
+    </div>
+</div>

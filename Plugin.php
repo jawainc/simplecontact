@@ -68,4 +68,14 @@ class Plugin extends PluginBase
             'zainab.simplecontact::mail.notification' => 'Simple Contact -- notification mail',
         ];
     }
+
+    public function registerReportWidgets()
+    {
+        return [
+            'Zainab\SimpleContact\ReportWidgets\MessageReport' => [
+                'label'   => 'zainab.simplecontact::lang.widget.label',
+                'context' => 'dashboard'
+            ],
+        ];
+    }
 }
