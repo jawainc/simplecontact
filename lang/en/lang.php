@@ -87,5 +87,5 @@
         'new' => 'New',
         'replied' => 'Replied',
         'total' => 'Total'
-    ]
+    ],
 ];
