@@ -79,4 +79,14 @@
         'button_description' => 'Texto do botão de envio(obrigatório)',
         'button_validation_message' => '',
     ],
+    'widget' => [
+        'label' => 'Resumo geral das Mensagens de Contato Conosco',
+        'properties_title' => 'título do widget',
+        'properties_chart' => 'Tipo de Gráfico',
+        'properties_chart_option_bar' => 'Barra',
+        'properties_chart_option_pie' => 'Torta',
+        'new' => 'Nova',
+        'replied' => 'Respondida',
+        'total' => 'Total'
+    ],
 ];
