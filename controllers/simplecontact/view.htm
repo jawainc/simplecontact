@@ -83,27 +83,27 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Print Message</h4>
+                <h4 class="modal-title"><?= e(trans('zainab.simplecontact::lang.simplecontact.print_message')) ?></h4>
             </div>
             <div class="modal-body">
                <div class="print-body">
                    <span class="name">
                        <?= $message->name ?> < <?= $message->email ?> >
                        <br />
-                       Phone: <?= $message->phone ?>
+                       <?= e(trans('zainab.simplecontact::lang.simplecontact.phone')) ?>: <?= $message->phone ?>
                    </span>
                    <span class="date"><?= date('M d, Y \a\t g:i A',strtotime( $message->created_at )); ?></span>
                    <br class="clear" />
                    <br />
                    <hr />
-                   <strong>Subject: <?= $message->subject ?></strong>
+                   <strong><?= e(trans('zainab.simplecontact::lang.simplecontact.subject')) ?>: <?= $message->subject ?></strong>
                    <hr />
                    <?= nl2br($message->message) ?>
                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button onclick="printMessage();" type="button" class="btn btn-primary" data-dismiss="modal">Print</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?= e(trans('zainab.simplecontact::lang.simplecontact.button_close_reply')) ?></button>
+                <button onclick="printMessage();" type="button" class="btn btn-primary" data-dismiss="modal"><?= e(trans('zainab.simplecontact::lang.simplecontact.print')) ?></button>
             </div>
         </div>
     </div>
@@ -115,7 +115,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Reply Message</h4>
+                <h4 class="modal-title"><?= e(trans('zainab.simplecontact::lang.simplecontact.message_reply')) ?></h4>
             </div>
             <div class="modal-body">
 
@@ -139,12 +139,12 @@
                 <input type="hidden" name="email_to" value="<?= $message->email ?>">
 
                 <div class="form-group text-field span-full is-required ">
-                    <label>Subject</label>
+                    <label><?= e(trans('zainab.simplecontact::lang.simplecontact.subject')) ?></label>
                     <input type="text" name="subject" value="Re: <?= $message->subject ?>" class="form-control " required />
                 </div>
 
                 <div class="form-group textarea-field  span-full is-required " >
-                    <label>Message:</label>
+                    <label><?= e(trans('zainab.simplecontact::lang.simplecontact.message')) ?></label>
                     <textarea type="text" name="message" id="message" class="form-control field-textarea size-huge"></textarea>
 
                 </div>
@@ -165,9 +165,9 @@
                                  "
                                 data-stripe-load-indicator
                                 class="btn btn-primary oc-icon-reply">
-                            Submit
+                            <?= e(trans('zainab.simplecontact::lang.simplecontact.button_submit_reply')) ?>
                         </button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><?= e(trans('zainab.simplecontact::lang.simplecontact.button_close_reply')) ?></button>
 
                     </div>
 
