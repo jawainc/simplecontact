@@ -87,6 +87,6 @@
         'properties_chart_option_pie' => 'Torta',
         'new' => 'Nova',
         'replied' => 'Respondida',
-        'total' => 'Total'
+        'total' => 'Total',
     ],
 ];
