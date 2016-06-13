@@ -8,3 +8,6 @@
     - builder_table_update_zainab_simplecontact_contact.php
 1.0.4:
     - 'Change Alias bug fixed'
+1.0.5:
+    - 'Dashboard widget added'
+    - 'Language added -- Portuguese (Brazil)'
