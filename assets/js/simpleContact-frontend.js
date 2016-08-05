@@ -7,6 +7,8 @@
     });
     $('#simpleContactForm').on('ajaxSuccess', function() {
         document.getElementById('simpleContactForm').reset();
-        grecaptcha.reset();
+        
+        if(typeof grecaptcha != "undefined")
+            grecaptcha.reset();
     });
     
