@@ -11,3 +11,5 @@
 1.0.5:
     - 'Dashboard widget added'
     - 'Language added -- Portuguese (Brazil)'
+1.0.6:
+    - 'grecaptcha reset bug fixed'
