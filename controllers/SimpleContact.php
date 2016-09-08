@@ -13,7 +13,7 @@ use ValidationException;
 use System\Classes\SettingsManager;
 class SimpleContact extends Controller
 {
-    public $requiredPermissions = ['zainab.simplecontact.messages'];
+    public $requiredPermissions = ['zainab.simplecontact.inbox'];
     
     public $implement = ['Backend\Behaviors\ListController'];
 
