@@ -17,7 +17,7 @@ class SimpleContact extends ComponentBase
         return [
             'name'        => 'zainab.simplecontact::lang.plugin.name',
             'description' => 'zainab.simplecontact::lang.component.description',
-            
+
         ];
     }
 
@@ -80,7 +80,12 @@ class SimpleContact extends ComponentBase
                 'default' => true,
                 'type' => 'checkbox',
             ],
-            
+            'detailedErrors' => [
+                'title'       => 'zainab.simplecontact::lang.component.detailed_errors_field',
+                'description' => 'zainab.simplecontact::lang.component.detailed_errors_field_description',
+                'default'     => false,
+                'type'        => 'checkbox',
+            ],
         ];
     }
 
@@ -93,6 +98,7 @@ class SimpleContact extends ComponentBase
             'messageLabel' => $this->property('messageTitle','Message'),
             'phoneEnabled' => $this->property('displayPhone',false),
             'buttonText' => $this->property('buttonText','Submit'),
+            'detailedErrors' => $this->property('detailedErrors',false),
         ];
     }
 
@@ -103,7 +109,7 @@ class SimpleContact extends ComponentBase
             'text_top_form' => Settings::get('text_top_form', ''),
 
         ];
-        
+
     }
 
 
@@ -146,8 +152,9 @@ class SimpleContact extends ComponentBase
             $messages = $validator->messages();
             Flash::error($messages->first());
 
-            throw new AjaxException(['#simple_contact_flash_message' => $this->renderPartial('@flashMessage.htm')]);
-
+            throw new AjaxException(['#simple_contact_flash_message' => $this->renderPartial('@flashMessage.htm',[
+                'errors' => $messages->all()
+            ])]);
         }
 
         /**
@@ -202,9 +209,9 @@ class SimpleContact extends ComponentBase
 
         if(Settings::get('auto_reply',false))
             $this->sendAutoReply();
-        
 
-            
+
+
 
     }
 

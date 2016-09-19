@@ -75,6 +75,8 @@
         'message_validation_message' => '',
         'display_phone_field' => 'Show Phone Field',
         'display_phone_field_description' => 'Show phone field in the form',
+        'detailed_errors_field' => 'Detailed Errors',
+        'detailed_errors_field_description' => 'Show all validation errors using a list',
         'button_text' => 'Form submit button text',
         'button_description' => 'Form submit button text(required)',
         'button_validation_message' => '',
