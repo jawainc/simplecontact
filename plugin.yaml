@@ -5,10 +5,11 @@ plugin:
     icon: oc-icon-envelope
     homepage: ''
 permissions:
-    inbox:
+    zainab.simplecontact.inbox:
         tab: 'zainab.simplecontact::lang.simplecontact.permission'
         label: 'zainab.simplecontact::lang.simplecontact.permission_messages'
-    manage_settings:
+    zainab.simplecontact.manage_settings:
         tab: 'zainab.simplecontact::lang.simplecontact.permission'
         label: 'zainab.simplecontact::lang.simplecontact.permission_settings'
+
 
