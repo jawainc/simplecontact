@@ -13,3 +13,6 @@
     - 'Language added -- Portuguese (Brazil)'
 1.0.6:
     - 'grecaptcha reset bug fixed'
+1.1.0:
+    - 'sql_modes NO_ZERO_IN_DATE,NO_ZERO_DATE fixed'
+    - 'minor bugs fixed'
