@@ -16,3 +16,7 @@
 1.1.0:
     - 'sql_modes NO_ZERO_IN_DATE,NO_ZERO_DATE fixed'
     - 'minor bugs fixed'
+1.1.1:
+    - 'Language added -- Russian'
+    - 'Translate Plugin dependency added'
+    - 'minor bug fixed'
