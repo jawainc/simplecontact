@@ -5,10 +5,7 @@ use Backend;
 use Zainab\SimpleContact\Controllers\SimpleContact;
 class Plugin extends PluginBase
 {
-    /**
-     * @var array Plugin dependencies
-     */
-    public $require = ['RainLab.Translate'];
+   
     
     public function pluginDetails()
     {
