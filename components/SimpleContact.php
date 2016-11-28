@@ -2,8 +2,6 @@
 
 use Backend\Facades\Backend;
 use Cms\Classes\ComponentBase;
-use RainLab\Translate\Models\Locale as LocaleModel;
-use RainLab\Translate\Classes\Translator;
 use Zainab\SimpleContact\Models\Settings;
 use Zainab\SimpleContact\Models\SimpleContact as simpleContactModel;
 use October\Rain\Support\Facades\Flash;
@@ -13,21 +11,7 @@ use Mail;
 use Redirect;
 class SimpleContact extends ComponentBase
 {
-    /**
-     * @var RainLab\Translate\Classes\Translator Translator object.
-     */
-    protected $translator;
-		
-		/**
-     * @var string The active locale code.
-     */
-    public $activeLocale;
-	  
-		public function init()
-    {
-        $this->translator = Translator::instance();
-    }
-
+   
     public function componentDetails()
     {
         return [
@@ -136,7 +120,7 @@ class SimpleContact extends ComponentBase
     {
         $this->addJs('/plugins/zainab/simplecontact/assets/js/simpleContact-frontend.js');
         if(Settings::get('recaptcha_enabled', false))
-            $this->addJs('https://www.google.com/recaptcha/api.js?hl='.$this->activeLocale = $this->translator->getLocale().'');
+            $this->addJs('https://www.google.com/recaptcha/api.js');
     }
 
     /**
