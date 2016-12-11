@@ -18,5 +18,7 @@
     - 'minor bugs fixed'
 1.1.1:
     - 'Language added -- Russian'
-    - 'Translate Plugin dependency added'
     - 'minor bug fixed'
+2.0.0:
+    - 'Translate Plugin Dependency Added (RainLab.Translate)'
+    - 'Languages Added (Arabic, Chinese)'

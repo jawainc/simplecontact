@@ -5,8 +5,7 @@ use Backend;
 use Zainab\SimpleContact\Controllers\SimpleContact;
 class Plugin extends PluginBase
 {
-   
-    
+
     public function pluginDetails()
     {
         return [
@@ -16,6 +15,12 @@ class Plugin extends PluginBase
             'icon'        => 'icon-envelope'
         ];
     }
+
+    /**
+     * @var array Plugin dependencies
+     */
+    public $require = ['RainLab.Translate'];
+
     public function registerComponents()
     {
         return [
