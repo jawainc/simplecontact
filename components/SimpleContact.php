@@ -231,7 +231,7 @@ class SimpleContact extends ComponentBase
 
         Mail::send('zainab.simplecontact::mail.notification', $vars, function($message) use ($vars) {
              $message->to(Settings::get('notification_email_address'));
-             $message->replyTo($vars['email']);
+             $message->replyTo($vars['email'], $vars['name']);
         });
     }
 
