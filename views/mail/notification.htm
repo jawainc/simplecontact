@@ -1,9 +1,18 @@
 subject = "Contact Us Form Message Received"
 ==
 You received a message from {{name}}.
+-------------------------------------
+Subject: {{ subject }}
+Message: {{ message_body }}
+-------------------------------------
 To read message go to {{url_message}}
 ==
-<strong>You received a message from {{name}} </strong>
-<p>
-    Click <a href="{{url_message}}">here</a> to read the message.
-</p>
+<p>You received a message from <strong>{{name}}</strong></p>
+
+<div style="border: 1px solid black;padding: 5px;">
+    <strong>Subject: {{ subject }}</strong>
+    <hr>
+    <p>{{ message_body | nl2br }}</p>
+</div>
+<p>Click <a href="{{url_message}}">here</a> to read the message online.</p>
+    
