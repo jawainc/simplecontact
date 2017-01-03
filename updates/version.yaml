@@ -22,3 +22,6 @@
 2.0.0:
     - 'Translate Plugin Dependency Added (RainLab.Translate)'
     - 'Languages Added (Arabic, Chinese)'
+2.0.1:
+    - 'Migration Bug Fixed'
+    
