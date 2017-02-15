@@ -132,17 +132,17 @@ class SimpleContact extends ComponentBase
          * Form validation
          */
         $customValidationMessages = [
-            'name.required' => e(trans('zainab.simplecontact::validation.custom.name.required')),
-            'email.required' => e(trans('zainab.simplecontact::validation.custom.email.required')),
-            'email.email' => e(trans('zainab.simplecontact::validation.custom.email.email')),
-            'subject.required' => e(trans('zainab.simplecontact::validation.custom.subject.required')),
-            'message.required' => e(trans('zainab.simplecontact::validation.custom.message.required'))
+            'name.required' => trans('zainab.simplecontact::validation.custom.name.required'),
+            'email.required' => trans('zainab.simplecontact::validation.custom.email.required'),
+            'email.email' => trans('zainab.simplecontact::validation.custom.email.email'),
+            'subject.required' => trans('zainab.simplecontact::validation.custom.subject.required'),
+            'message.required' => trans('zainab.simplecontact::validation.custom.message.required'),
         ];
         $formValidationRules = [
             'name' => 'required',
             'email' => 'required|email',
             'subject' => 'required',
-            'message' => 'required'
+            'message' => 'required',
         ];
 
         $validator = Validator::make(post(), $formValidationRules,$customValidationMessages);
